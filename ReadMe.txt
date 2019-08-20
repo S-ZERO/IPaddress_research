@@ -1,0 +1,4 @@
+main_Web_safety.py：module.pyを呼び出して使うメイン動作プログラム
+ aguse_reserach_module.py：aguseにアクセスしてスクレイピングするモジュール
+ mxtoolbox_blacklist_module.py：mxtoolboxにアクセスしてスクレイピングするモジュール
+ owner_search_IP_module.py：ownerにアクセスしてスクレイピングするモジュール
