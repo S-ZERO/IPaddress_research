@@ -42,7 +42,7 @@ def login(driver):
     EC.presence_of_element_located((By.ID, "ibmid"))
     )
 
-    driver.find_element_by_id("ibmid").send_keys("r-suzuki@ift-kk.co.jp")
+    driver.find_element_by_id("ibmid").send_keys("your@mail.address")
     driver.find_element_by_class_name("ibm-btn-pri").click()
 
 
@@ -50,7 +50,7 @@ def login(driver):
     EC.presence_of_element_located((By.ID, "password"))
     )
 
-    driver.find_element_by_id("password").send_keys("ArisIft3051")
+    driver.find_element_by_id("password").send_keys("yourPassWord")
     driver.find_element_by_class_name("ibm-btn-pri").click()
 
     WebDriverWait(driver,60).until(
