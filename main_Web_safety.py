@@ -39,16 +39,24 @@ xforce_IP = []
 
 def all_result_writer(write_result_list, col_num, target_wb):
     headers = ["IP", "aguse", "mxtoolbox", "owner"]
-    #fill = openpyxl.styles.PatternFill(patternType='solid', fgColor='#7cfc00', bgColor='#7cfc00')
+    fill = openpyxl.styles.fills.PatternFill(patternType='solid', fgColor='228B22', bgColor='228B22')
+    font = openpyxl.styles.fonts.Font(color = 'FFFFFF', bold = True )
+    border_line = openpyxl.styles.borders.Side(style='thin', color = '000000')
+    border = openpyxl.styles.borders.Border(top=border_line, bottom=border_line, left=border_line, right=border_line)
+    print(fill)
     if not "all_result" in target_wb.get_sheet_names():
         all_result_sheet = target_wb.create_sheet(title = "all_result")
         for col, header in enumerate(headers):
-            all_result_sheet.cell(row = 1, column = col+1, value = header)
+            all_result_sheet.cell(row = 1, column = col+1, value = header).fill = fill
+            all_result_sheet.cell(row = 1, column = col+1).font = font
+            all_result_sheet.cell(row = 1, column = col+1).border = border
     else:
         all_result_sheet = target_wb.get_sheet_by_name("all_result")
 
     for num, write_value in enumerate(write_result_list):
         all_result_sheet.cell(row = num+2, column = col_num+1, value = write_value)
+        all_result_sheet.cell(row = num+2, column = col_num+1).border = border
+    
     wb.save(r"C:\PF_IP_searcher\result\result.xlsx")
 
 driver = webdriver.Chrome(r'C:\PF_IP_searcher\chromedriver.exe')  
@@ -71,7 +79,7 @@ for ip in search:
     print(aguse_results)
     
     #------mxtoolboxの処理--------------------------------
-    for roop in range(0,6):#ループが6まである理由は、aguseの妨害処理に1ループ無駄にするかもしれないから
+    for roop in range(0,5):
        mxtoolbox_result = mxtoolbox.main_move(ip,driver)
        if not mxtoolbox_result == None and int(mxtoolbox_result[1]) < 5:
            break
